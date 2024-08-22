@@ -4,18 +4,15 @@ import LocomotiveProvider from "@/providers/locomotive";
 import Image from "next/image";
 import Loading from "./loading";
 import Link from "next/link";
-import Nav from "@/components/nav";
-import { useDarkModeStore } from "@/store/dark-mode";
-import { PiSunFill } from "react-icons/pi";
+import { useDarkModeSSRStore } from "@/store/dark-mode";
 import { LuArrowUpRight } from "react-icons/lu";
 import ProjectSection from "@/sections/projects";
 import Parallax from "@/components/parallax";
-import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 
 export default function Home() {
-  const [darkMode, switchDarkMode] = useDarkModeStore((state) => [
+  const [darkMode, switchDarkMode] = useDarkModeSSRStore((state) => [
     state.darkMode,
     state.switchDarkMode,
   ]);
@@ -25,14 +22,15 @@ export default function Home() {
       <Loading isComponent={true} />
 
       <main className="flex flex-col relative">
-        <Image
-          data-scroll-section
-          src="/images/background/white-noise.webp"
-          alt="Deltix Logo"
-          layout="fill"
-          priority
-          className="dark:opacity-50"
-        />
+        <div data-scroll-section className="absolute-full">
+          <Image
+            src="/images/background/white-noise.webp"
+            alt="Noise Background"
+            layout="fill"
+            priority
+            className="dark:opacity-50"
+          />
+        </div>
 
         <section
           data-scroll-section
@@ -40,7 +38,7 @@ export default function Home() {
         >
           <Image
             src="/images/background/fluid.webp"
-            alt="Deltix Logo"
+            alt="Fluid Background"
             layout="fill"
             priority
             className="-z-[1] dark:opacity-15 small:object-cover"
@@ -58,15 +56,15 @@ export default function Home() {
                 </h2>
 
                 <p className="text-xl small:text-base font-semibold mb-[10%]">
-                  My name is Ederson, I’m{" "}
-                  <span className="font-normal">{"{2004-2024}"}</span> years old
+                  An <span className="font-normal">{"{2004-2024}"}</span> years
+                  old developer from Brazil
                 </p>
 
                 <div className="flex gap-x-main small:flex-col">
                   <Link
                     role="button"
                     href="/contact"
-                    className="big:min-w-main-3 small:flex-1 flex-center border-2 py-2.5 px-3 border-dark bg-white hover:bg-white/80 text-dark dark:border-white dark:bg-dark dark:text-white"
+                    className="big:min-w-main-3 small:flex-1 flex-center border-2 py-2.5 px-3 border-dark bg-white hover:bg-white/70 text-dark dark:border-white dark:bg-dark dark:text-white dark:hover:bg-dark/70"
                   >
                     Contact me
                   </Link>
@@ -109,15 +107,15 @@ export default function Home() {
         >
           <div className="absolute -z-10 left-[25%] shadow-[0px_0px_700px_150px_#C9ECAE]" />
           <h2 className="font-poppins uppercase font-bold mb-10">
-            The developer behind the code.
+            The mind behind the code.
           </h2>
           <p className="mb-8 max-w-main-8 text-sm leading-[250%] small:text-left">
-            I&apos;m a passionate developer who started his journey focused on
-            front-end and UI/UX. Along the way, I realized the importance of
-            understanding back-end development to become a well-rounded
-            developer. With two years of experience as a freelancer, I&apos;m
-            always looking for new challenges and opportunities to grow
-            professionally.
+            I&apos;m a passionate Brazilian developer who has been studying
+            programming since I was a child. Over the years, I&apos;ve explored
+            various projects and hobbies, including game development,
+            pentesting, and electronics hardware. I started my career as an
+            intern video editor at a local news company and later worked
+            remotely as a backend and mobile developer at BeMobile.
           </p>
           <Link
             role="button"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useDarkModeStore } from "@/store/dark-mode";
+import { useDarkModeSSRStore } from "@/store/dark-mode";
 import { Inter, Poppins } from "next/font/google";
 import React from "react";
 
@@ -22,7 +22,8 @@ export default function FontProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const darkMode = useDarkModeStore((state) => state.darkMode);
+  const darkMode = useDarkModeSSRStore((state) => state.darkMode);
+
   return (
     <body
       className={`${inter.className} ${inter.variable} ${poppins.variable} ${

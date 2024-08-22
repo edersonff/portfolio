@@ -3,7 +3,7 @@
 import LocomotiveProvider from "@/providers/locomotive";
 import Image from "next/image";
 import Loading from "../loading";
-import { useDarkModeStore } from "@/store/dark-mode";
+import { useDarkModeSSRStore } from "@/store/dark-mode";
 import Navbar from "@/components/navbar";
 import Link from "next/link";
 import ProjectSection from "@/sections/projects";
@@ -11,7 +11,7 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 
 export default function Projects() {
-  const [darkMode, switchDarkMode] = useDarkModeStore((state) => [
+  const [darkMode, switchDarkMode] = useDarkModeSSRStore((state) => [
     state.darkMode,
     state.switchDarkMode,
   ]);
@@ -21,14 +21,15 @@ export default function Projects() {
       <Loading isComponent={true} />
 
       <main className="flex flex-col relative">
-        <Image
-          data-scroll-section
-          src="/images/background/white-noise.webp"
-          alt="Deltix Logo"
-          layout="fill"
-          priority
-          className="dark:opacity-50"
-        />
+        <div data-scroll-section className="absolute-full">
+          <Image
+            src="/images/background/white-noise.webp"
+            alt="Noise Background"
+            layout="fill"
+            priority
+            className="dark:opacity-50"
+          />
+        </div>
 
         <section
           data-scroll-section
@@ -36,18 +37,19 @@ export default function Projects() {
         >
           <Header />
 
-          <div className="gap-6 mt-28">
-            <div className="font-poppins text-5xl small:text-3xl font-bold text-center relative">
-              <h2 className="whitespace-nowrap">My Projects</h2>
-            </div>
-          </div>
+          <div className="mt-28">
+            <h2 className="whitespace-nowrap font-poppins text-5xl small:text-3xl font-bold text-center relative">
+              My Projects
+            </h2>
 
-          <p className="text-dark-light text-center leading-[250%] mt-20 text-xl max-w-main-9 space-y-7 mb-24 small:text-left small:px-8">
-            I&apos;m a passionate developer who started his journey focused on
-            front-end and UI/UX. Along the way, I realized the importance of
-            understanding back-end development to become a well-rounded
-            developer. With two
-          </p>
+            <p className="text-dark-light text-center leading-[250%] mt-20 text-xl max-w-main-9 space-y-7 mb-24 small:text-left small:px-8">
+              Some of my projects were developed while I was working as a
+              backend/mobile developer at BeMobile, while others were completed
+              as a freelance developer and designer for various companies and
+              individuals. I primarily used Next.js, Figma, Tailwind CSS, and
+              put in a lot of effort to ensure high-quality results.
+            </p>
+          </div>
 
           <div className="absolute -z-10 right-[25%] shadow-[0px_0px_700px_150px_#AEBCEC]" />
         </section>
