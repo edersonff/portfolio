@@ -28,7 +28,7 @@ export default function PercentageBar({
         </div>
       </div>
       <div>
-        <h4 className="font-poppins text-left font-semibold leading-[100%]">
+        <h4 className="font-poppins text-left font-semibold leading-[100%] whitespace-nowrap">
           {label}
         </h4>
       </div>
