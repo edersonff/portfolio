@@ -11,8 +11,10 @@ import { useMemo } from "react";
 import { projects } from "@/theme/projects";
 import { LuArrowUpRight } from "react-icons/lu";
 import { FaGithub } from "react-icons/fa6";
+import { useLocomotiveStore } from "@/store/locomotive";
 
 export default function Project() {
+  const locomotive = useLocomotiveStore((state) => state.locomotive);
   const getParms = useParams();
 
   const project = useMemo(() => {
@@ -116,6 +118,9 @@ export default function Project() {
                 key={index}
                 width={1920}
                 height={1080}
+                onLoadingComplete={() => {
+                  locomotive?.update();
+                }}
                 className="rounded-md w-full h-auto"
               />
             ))}
