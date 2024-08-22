@@ -22,12 +22,12 @@ export default function Projects() {
 
       <main className="flex flex-col relative">
         <div data-scroll-section className="absolute-full">
-          <Image
-            src="/images/background/white-noise.webp"
-            alt="Noise Background"
-            layout="fill"
-            priority
-            className="dark:opacity-50"
+          <div
+            className="absolute-full dark:opacity-20 opacity-60"
+            style={{
+              backgroundImage: `url('/images/background/white-noise.webp')`,
+              backgroundRepeat: "repeat",
+            }}
           />
         </div>
 
