@@ -58,7 +58,6 @@ export default function Parallax() {
     }
 
     const mousemove = (e: MouseEvent) => {
-      console.log(e.clientX, e.clientY);
       onMove({ x: e.clientX, y: e.clientY });
     };
 
