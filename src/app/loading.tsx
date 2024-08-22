@@ -2,38 +2,78 @@
 
 import { useLoadingStore } from "@/store/loading";
 import { transition } from "@/theme/animation";
-import { motion } from "framer-motion";
-import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect } from "react";
 
-export default function Loading({ isComponent }: { isComponent: boolean }) {
-  const [loading, setLoading] = useLoadingStore((state) => [
+export default function LoadingContainer({
+  isComponent,
+}: {
+  isComponent: boolean;
+}) {
+  const [isLoading, setLoading] = useLoadingStore((state) => [
     state.loading,
     state.setLoading,
   ]);
   useEffect(() => {
     if (isComponent) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+      setLoading(false);
     }
   }, [isComponent]);
 
+  return <AnimatePresence>{isLoading && <Loading />}</AnimatePresence>;
+}
+
+function Loading() {
   return (
-    <div
-      className="fixed-full z-[999999] flex-center small:px-6  from-primary to-secondary overflow-hidden transition-opacity duration-1000 delay-1000 "
-      style={{
-        opacity: loading ? 1 : 0,
-        pointerEvents: loading ? "auto" : "none",
+    <motion.div
+      className="fixed-full z-[99999999] text-xs flex-center small:px-6 bg-gradient-to-br from-neutral-950 to-neutral-900 overflow-hidden"
+      animate={{ height: "100vh" }}
+      exit={{ height: "0vh" }}
+      transition={{
+        ...transition,
+        duration: 1,
+        delay: 1,
+        type: "tween",
       }}
     >
-      <Image
-        src="/deltix/logo-white-2.svg"
-        alt="Deltix Logo"
-        width={211}
-        height={68}
-        priority
-      />
-    </div>
+      <div className="mx-auto w-[500px] small:w-full overflow-hidden drop-shadow-xl">
+        <motion.div
+          initial={{ y: 0 }}
+          exit={{ y: "100%" }}
+          transition={{
+            ...transition,
+            duration: 0.75,
+            delay: 0,
+            type: "tween",
+          }}
+          className="bg-gray-950 max-w-[80vw] min-h-52 rounded-xl overflow-hidden"
+        >
+          <div className="bg-[#333] flex items-center p-[5px] text-whitec relative ">
+            <div className="flex absolute left-3">
+              <span className="h-3.5 w-3.5 bg-[#ff605c] rounded-xl mr-2"></span>
+              <span className="h-3.5 w-3.5 bg-[#ffbd44] rounded-xl mr-2"></span>
+              <span className="h-3.5 w-3.5 bg-[#00ca4e] rounded-xl"></span>
+            </div>
+            <div className="flex-1 text-center text-white">
+              Portfolio - Ederson
+            </div>
+          </div>
+          <div className="p-2.5 text-[#0f0]">
+            <div>
+              <span className="mr-2">Loading</span>
+              <span className="animate-[ping_1.5s_0.5s_ease-in-out_infinite]">
+                .
+              </span>
+              <span className="animate-[ping_1.5s_0.7s_ease-in-out_infinite]">
+                .
+              </span>
+              <span className="animate-[ping_1.5s_0.9s_ease-in-out_infinite]">
+                .
+              </span>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
   );
 }
