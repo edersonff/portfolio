@@ -1,14 +1,15 @@
 import { projects, Project as ProjectType } from "@/theme/projects";
 import { addAlpha } from "@/utils/colors";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function ProjectSection() {
   return (
     <section data-scroll-section className="py-[10%]">
-      <div className="content flex flex-col gap-20">
+      <div className="content flex flex-col gap-[35vh] small:gap-[15vh]">
         {projects.map((project, index) => (
-          <Project key={index} {...project} />
+          <Project invert={index % 2 === 0} key={index} {...project} />
         ))}
       </div>
     </section>
@@ -20,12 +21,21 @@ function Project({
   subtitle,
   image,
   button,
+  slug,
   categories,
   description,
   color,
-}: ProjectType) {
+  invert,
+}: ProjectType & {
+  invert: boolean;
+}) {
   return (
-    <div className="flex small:flex-col gap-y-main justify-between">
+    <div
+      className={
+        "flex small:flex-col gap-y-main justify-between " +
+        (invert ? "flex-row-reverse" : "flex-row")
+      }
+    >
       <div className="max-w-main-5">
         <p className="text-stone-300 dark:text-stone-500 text-sm mb-2">
           {subtitle}
@@ -62,22 +72,24 @@ function Project({
           {description}
         </p>
 
-        <button
+        <Link
+          href={"/projects/" + slug}
+          role="button"
           className="w-full py-3.5 flex-center hover:opacity-90 transition-opacity"
           style={{
             backgroundColor: addAlpha(color, 0.2),
           }}
         >
           {button.label}
-        </button>
+        </Link>
       </div>
-      <div className="relative">
+      <Link href={"/projects/" + slug} className="relative">
         <Image
           src="/images/illustrations/dots.svg"
           alt={title}
           width={125}
           height={125}
-          className="absolute top-0 left-0 transform -translate-x-[20%] -translate-y-[20%]"
+          className="absolute left-0 top-0 transform -translate-x-[20%] -translate-y-[20%]"
         />
 
         <Image
@@ -87,7 +99,7 @@ function Project({
           height={423}
           className="relative z-10"
         />
-      </div>
+      </Link>
     </div>
   );
 }
