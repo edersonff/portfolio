@@ -20,7 +20,7 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Seti company website",
+    title: "Seti Home",
     subtitle: "Web project",
     description:
       "A homepage for Seti Company, developed using Next.js with smooth scrolling, Framer Motion, Swiper, and various other technologies. This webpage was created as a prototype and did not have a pre-designed layout.",
@@ -28,7 +28,7 @@ export const projects: Project[] = [
     button: {
       label: "More about",
     },
-    slug: "seti-company-website",
+    slug: "seti-home",
     color: "#1C95BE",
     image: "seti.webp",
 
