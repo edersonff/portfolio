@@ -1,3 +1,6 @@
+"use client";
+
+import { useSSRStore } from "@/hooks/ssr";
 import { create } from "zustand";
 import { persist, StateStorage } from "zustand/middleware";
 
@@ -18,3 +21,6 @@ const darkModePersist = persist<DarkModeStore>(
 );
 
 export const useDarkModeStore = create(darkModePersist);
+
+export const useDarkModeSSRStore = (state: (state: DarkModeStore) => any) =>
+  useSSRStore(useDarkModeStore(state));
