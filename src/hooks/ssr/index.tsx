@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { UseBoundStore } from "zustand";
 
 export const useSSRStore = (store: UseBoundStore<any>) => {
-  const [_store, setStore] = useState<UseBoundStore<any>>();
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setStore(store);
-  }, [store]);
+    setReady(true);
+  }, []);
 
   let defaultStore = undefined;
 
@@ -14,5 +14,9 @@ export const useSSRStore = (store: UseBoundStore<any>) => {
     defaultStore = [];
   }
 
-  return _store || defaultStore;
+  if (!ready) {
+    return defaultStore;
+  }
+
+  return store;
 };
