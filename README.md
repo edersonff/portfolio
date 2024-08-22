@@ -1,4 +1,8 @@
+<div align="center">
+
 ![Logo](https://ederson.tech/logo.svg)
+
+</div>
 
 # Portfolio
 
@@ -62,7 +66,10 @@ I'm a passionate Brazilian developer who has been studying programming since I w
 
 ## 🛠 Skills
 
-Javascript, HTML, CSS...
+<div align="center">
+    <img src="https://skillicons.dev/icons?i=react,mui,html,css,vscode,github,figma,tailwind,git,nextjs" />
+    <img src="https://skillicons.dev/icons?i=nodejs,python,javascript,typescript,express,mongodb,c,java,mysql" /><br>
+</div>
 
 ## 🔗 Links
 
