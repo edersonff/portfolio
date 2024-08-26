@@ -60,8 +60,8 @@ const config: Config = {
         "dark-light": "#7a7a7a",
       },
       screens: {
-        big: [{ min: "1024px" }, { min: "1280px" }],
-        small: [{ max: "1023px" }],
+        big: [{ min: "768px" }, { min: "1280px" }],
+        small: [{ max: "767px" }],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
